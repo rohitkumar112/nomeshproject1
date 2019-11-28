@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+        <color name="colorPrimary">#00a671</color>
+        <color name="colorPrimaryDark">#00a671</color>
+        <color name="colorSpinnerLine">#EB0D0D</color>
+        <color name="colorCustom">#cc000000</color>
+        <color name="colorWhite">#ffffff</color>
+        <color name="colorGreen">#00a671</color>
+        <color name="colorYellow">#ffd432</color>
+        <color name="colorDarkYellow">#dfa803</color>
+        <color name="colorLightGray">#e8e8e8</color>
+        <color name="colorGray">#e2e2e2</color>
+        <color name="colorForSpinnerLine">#7521b0</color>
+        <color name="colorBlack">#000000</color>
+        <color name="lhw_theme">#7521b0</color>
+        <color name="lt_grey">#D3D3D3</color>
+        <color name="red_float_button">#ca2504</color>
+        <color name="white">#ffffff</color>
+        <color name="white_half_opaq">#80FFFFFF</color>
+        <color name="white_quarter_opaq">#40FFFFFF</color>
+        <color name="transparent">#00000000</color>
+        <color name="appGreen">#00a671</color>
+        <color name="black">#000</color>
+        <color name="color_text_login">#77fdd2</color>
+        <color name="color_app_background">#00a671</color>
+
+        <color name="green">#00a671</color>
+        <color name="yellow">#dfa803</color>
+        <color name="gray">#80000000</color>
+
+
+
+        <color name="lightgreen">#5dc510</color>
+
+        <color name="red">#ea0000</color>
+
+        <color name="expListBackground">#ffffff</color>
+
+
+        <color name="lightGray">#e2e2e2</color>
+        <color name="gray_light">#afafaf</color>
+        <color name="blue">#1c48ee</color>
+        <color name="decentBlue">#4a89c8</color>
+        <color name="orange">#ff7c1c</color>
+        <color name="darkBlue">#32479a</color>
+        <color name="darkyellow">#dfa803</color>
+        <color name="purple">#7929b6</color>
+        <color name="light_yellow">#ffd432</color>
+
+        <color name="text_view_value">#000000</color>
+        <color name="divider_line_dashboard_color">#e2e2e2</color>
+        <color name="chat_recv_color">#E9F5EF</color>
+        <color name="chat_bubble_color_recv">#E9F5EF</color>
+        <color name="chat_bubble_sent_color">#5DD1AF</color>
+        <color name="text_color_attendance_dashboard">#c0c20c</color>
+        <color name="text_color_supervisedvisits_dashboard">#709696</color>
+        <color name="text_color_usualmeetings_dashboard">#9718b0</color>
+        <color name="text_color_daily_program_dashboard">#00a672</color>
+        <color name="text_color_events_dashboard">#fe7c1c</color>
+        <color name="text_color_followup_dashboard">#535353</color>
+        <color name="text_color_supplies_dashboard">#96707b</color>
+        <color name="text_color_referral_dashboard">#00a2d9</color>
+        <color name="text_color_dashboard">#e3000000</color>
+        <color name="divider_color_default">#e2e2e2</color>
+        <color name="divider_color_primary">@color/colorPrimary</color>
+        <color name="White">#fff</color>
+        <color name="gray_opaq_50">#80000000</color>
+        <color name="colorwhite">#fff</color>
+</resources>
