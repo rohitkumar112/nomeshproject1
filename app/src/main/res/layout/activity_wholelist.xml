@@ -1,15 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".wholelist">
-    <android.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+       <androidx.appcompat.widget.Toolbar
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+           <androidx.appcompat.widget.SearchView
+               android:layout_width="match_parent"
+               app:queryHint="Search here"
+               android:id="@+id/searchicon"
+               android:layout_height="wrap_content">
+
+           </androidx.appcompat.widget.SearchView>
+       </androidx.appcompat.widget.Toolbar>
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_weight="0.3"
+            android:layout_width="0dp"
+            android:text="Name"
+            android:background="@drawable/rectangle"
+            android:textAlignment="center"
+            android:textSize="21dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_weight="0.3"
+            android:layout_width="0dp"
+            android:text="Credit"
+            android:background="@drawable/rectangle"
+            android:textAlignment="center"
+            android:textSize="21dp"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_weight="0.3"
+            android:layout_width="0dp"
+            android:text="Debit"
+            android:background="@drawable/rectangle"
+            android:textAlignment="center"
+            android:textSize="21dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_weight="0.3"
+            android:layout_width="0dp"
+            android:text="Add value"
+            android:background="@drawable/rectangle"
+            android:textAlignment="center"
+            android:textSize="21dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_marginTop="20dp"
+        android:weightSum="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/credit"
+            android:layout_weight="0.3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/debit"
+            android:layout_weight="0.3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+        <Button
+
+            android:text="submit"
+            android:layout_weight="0.4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginTop="20dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:id="@+id/recyclerview"
         android:layout_height="match_parent"
+        android:padding="10dp"
         tools:context=".nomeshactivity">
-    </android.recyclerview.widget.RecyclerView>
+    </androidx.recyclerview.widget.RecyclerView>
+    <LinearLayout
+        android:layout_width="match_parent"
+ android:weightSum="1"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:gravity="end"
+            android:layout_weight="0.6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/submit"
+        android:layout_gravity="center"
+        android:text="submit"
+
+        android:background="@drawable/rectangle"
+     android:gravity="center"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="end"
+            android:layout_weight="0.4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/addclient"
+            android:layout_gravity="right"
+            android:src="@drawable/ic_floating_button_1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"/>
+        </LinearLayout>
+        </LinearLayout>
 </LinearLayout>
