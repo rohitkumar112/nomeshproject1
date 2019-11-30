@@ -1,7 +1,17 @@
 package com.example.nomeshproject;
 
 class debitcreditmodel {
+    public debitcreditmodel()
+    {
+
+    }
     public String name;
+
+    public debitcreditmodel(String name, int debit, int credit) {
+    this.name=name;
+    this.debit=debit;
+    this.credit=credit;
+    }
 
     public String getName() {
         return name;

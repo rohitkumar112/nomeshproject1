@@ -11,9 +11,9 @@
         android:theme="@style/AppTheme">
         <activity android:name=".wholelist"></activity>
         <activity android:name=".addclient" />
-        <activity android:name=".dashboard" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".debitcredit" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".dashboard">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

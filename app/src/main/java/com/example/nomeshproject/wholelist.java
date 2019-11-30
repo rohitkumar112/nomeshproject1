@@ -12,8 +12,15 @@ import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.ParsedRequestListener;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.widget.Toast.LENGTH_SHORT;
 
 public class wholelist extends AppCompatActivity {
     RecyclerView recyclerview;
@@ -42,6 +49,64 @@ addclientdialog addclientd=new addclientdialog(wholelist.this);
 addclientd.show();
             }
         });
+        final List<debitcreditmodel> wholelist=new ArrayList<debitcreditmodel>();
+        ///apii connection
+        AndroidNetworking.get("http://192.168.137.1:8044/api/department")
+                .addQueryParameter("syncDateTime",null)
+                .setTag("test")
+                .setPriority(Priority.LOW)
+                .build()
+                .getAsObject(Clientdebitlist.class, new ParsedRequestListener<Clientdebitlist>() {
+
+
+                    @Override
+                    public void onResponse(Clientdebitlist response) {
+
+                        int k=0;
+                        if(response!=null)
+                        {
+
+                            for(int i=0;i<response.getGetdata().size();i++)
+                            {
+
+                                debitcreditmodel u=new debitcreditmodel(response.getGetdata().get(i).getName(),response.getGetdata().get(i).getDebit(),response.getGetdata().get(i).getCredit());
+                                wholelist.add(u);
+//                        db.insert()
+//
+//                        if(response.getMessage().equals("nonsuccessfull"))
+//                        {
+//                            Toast.makeText(getdata.this,"no not working",LENGTH_SHORT).show();
+//                        }
+//                        else
+//                        {
+//                            Toast.makeText(getdata.this,"working",LENGTH_SHORT).show();
+//                        }
+
+                            }
+                            Toast.makeText(wholelist.this,"data inserted", LENGTH_SHORT).show();
+                        }
+                    }
+                    @Override
+                    public void onError(ANError anError) {
+                        Toast.makeText(wholelist.this,anError.getMessage(),LENGTH_SHORT).show();
+                        System.out.println(anError.getMessage());
+                    }
+                });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         recyclerview.setLayoutManager(new LinearLayoutManager(this));
         final String[] name={"rohit","kumar","sandesh"};
 

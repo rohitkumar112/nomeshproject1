@@ -60,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(), "Successfull Login", Toast.LENGTH_SHORT).show();
                                     //storing the username and password
                                     Toast.makeText(MainActivity.this,"Login Successfully",Toast.LENGTH_SHORT).show();
-
                                 }
                             }
 

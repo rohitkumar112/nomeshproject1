@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class recyceleradapter extends RecyclerView.Adapter<recyceleradapter.viewholder> {
+public class recyceleradapter extends RecyclerView.Adapter<recyceleradapter.viewholder> implements Filterable {
     public recyceleradapter() {
 
     }
@@ -51,6 +53,7 @@ public class recyceleradapter extends RecyclerView.Adapter<recyceleradapter.view
     public Context context;
 
     public List<debitcreditmodel> debitcreditmodels=new ArrayList<>();
+ public List<debitcreditmodel> debitcreditmodelList=new ArrayList<>();
     public recyceleradapter(String[] name, Context context)
     {
         this.name=name;
@@ -67,7 +70,6 @@ public class recyceleradapter extends RecyclerView.Adapter<recyceleradapter.view
             db.setDebit(0);
             debitcreditmodels.add(db);
         }
-
     }
     //for checking whether this is equal or not.
     public int gettotalcount()
@@ -131,6 +133,22 @@ public class recyceleradapter extends RecyclerView.Adapter<recyceleradapter.view
     public int getItemCount() {
         return name.length;
     }
+
+    @Override
+    public Filter getFilter() {
+        return null;
+    }
+    private Filter namefilter=new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            return null;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+
+        }
+    };
 
     public class viewholder extends RecyclerView.ViewHolder {
         TextView name;

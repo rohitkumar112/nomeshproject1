@@ -9,7 +9,8 @@
     android:layout_height="match_parent"
     >
     <LinearLayout
-    android:background="@color/colorPrimary"
+
+        android:background="@color/navyblue"
         android:weightSum="1"
 
         android:layout_width="match_parent"
@@ -32,23 +33,34 @@
                 android:layout_weight="0.5"
                 android:gravity="center"
                 android:paddingTop="50dp">
-
+<LinearLayout
+    android:id="@+id/laddclient"
+    android:background="@drawable/rectangle"
+android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:layout_width="150dp"
+    android:layout_height="150dp">
+    <ImageView
+        android:layout_marginTop="-10dp"
+        android:background="@drawable/addclient"
+        android:layout_width="40dp"
+        android:layout_height="40dp"/>
                 <TextView
 
                     android:id="@+id/addclienttext"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="20dp"
 
                     android:layout_marginRight="20dp"
-                    android:background="@drawable/rectangle"
                     android:baselineAligned="false"
                     android:gravity="center"
                     android:text="Add Clients"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="21sp" />
-
+</LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:paddingTop="50dp"
@@ -57,20 +69,33 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_height="wrap_content">
-
+                <LinearLayout
+                    android:id="@+id/ldebitcredit"
+                    android:background="@drawable/rectangle"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp">
+                    <ImageView
+                        android:layout_marginTop="-10dp"
+                        android:background="@drawable/addclient"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"/>
                 <TextView
                     android:id="@+id/debitcredit"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_width="150dp"
+                    android:layout_width="wrap_content"
                     android:text="Debit Credit"
-                    android:layout_gravity="center"
+android:layout_gravity="center"
+                    android:lineSpacingExtra="-5dp"
                     android:gravity="center"
                     android:textSize="21sp"
-                    android:textColor="@color/black"
-                    android:layout_height="150dp"
-                    android:background="@drawable/rectangle"/>
-
+                    android:textColor="@color/white"
+                    android:layout_height="wrap_content"
+/>
+                </LinearLayout>
             </LinearLayout>
        </LinearLayout>
         <LinearLayout
@@ -86,19 +111,33 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_height="match_parent">
+                <LinearLayout
+                    android:id="@+id/lwholelist"
+                    android:background="@drawable/rectangle"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical"
+
+                    android:layout_width="150dp"
+                    android:layout_height="150dp">
+                    <ImageView
+                        android:layout_marginTop="-10dp"
+                        android:background="@drawable/addclient"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"/>
                 <TextView
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_width="150dp"
+                    android:layout_width="wrap_content"
                     android:text="whole Data"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:id="@+id/wholedata"
                     android:textSize="21sp"
-                    android:textColor="@color/black"
-                    android:layout_height="150dp"
-                    android:background="@drawable/rectangle"/>
-
+                    android:textColor="@color/white"
+                    android:layout_height="wrap_content"
+/>
+                </LinearLayout>
             </LinearLayout>
 
                <LinearLayout
@@ -108,19 +147,31 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_height="wrap_content">
-
+                   <LinearLayout
+                       android:id="@+id/llogout"
+                       android:background="@drawable/rectangle"
+                       android:layout_gravity="center"
+                       android:gravity="center"
+                       android:orientation="vertical"
+                       android:layout_width="150dp"
+                       android:layout_height="150dp">
+                       <ImageView
+                           android:layout_marginTop="-10dp"
+                           android:background="@drawable/addclient"
+                           android:layout_width="40dp"
+                           android:layout_height="40dp"/>
                 <TextView
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_width="150dp"
+ android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="Logout"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:textSize="21sp"
-                    android:textColor="@color/black"
-                    android:layout_height="150dp"
-                    android:background="@drawable/rectangle"/>
-
+                    android:textColor="@color/white"
+/>
+                   </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 </LinearLayout>
