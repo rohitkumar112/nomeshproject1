@@ -6,19 +6,17 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 class Clientdebitlist {
-        @SerializedName("getdata")
-        @Expose
-        private List<Getdatum> getdata = null;
+    @SerializedName("getdata")
+    @Expose
+    private List<Getdatum> getdata = null;
 
-        public List<Getdatum> getGetdata() {
-            return getdata;
-        }
+    public List<Getdatum> getGetdata() {
+        return getdata;
+    }
 
-        public void setGetdata(List<Getdatum> getdata) {
-            this.getdata = getdata;
-        }
-
-
+    public void setGetdata(List<Getdatum> getdata) {
+        this.getdata = getdata;
+    }
 
     public class Getdatum {
 
@@ -31,9 +29,6 @@ class Clientdebitlist {
         @SerializedName("credit")
         @Expose
         private int credit;
-        @SerializedName("getdata")
-        @Expose
-        private Object getdata;
 
         public String getName() {
             return name;
@@ -58,14 +53,5 @@ class Clientdebitlist {
         public void setCredit(int credit) {
             this.credit = credit;
         }
-
-        public Object getGetdata() {
-            return getdata;
-        }
-
-        public void setGetdata(Object getdata) {
-            this.getdata = getdata;
-        }
-
     }
 }

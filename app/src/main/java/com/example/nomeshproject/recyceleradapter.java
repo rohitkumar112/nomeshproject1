@@ -150,7 +150,7 @@ public class recyceleradapter extends RecyclerView.Adapter<recyceleradapter.view
         }
     };
 
-    public class viewholder extends RecyclerView.ViewHolder {
+    public static class viewholder extends RecyclerView.ViewHolder {
         TextView name;
         EditText credit,debit;
         Button add;
@@ -172,7 +172,7 @@ public class recyceleradapter extends RecyclerView.Adapter<recyceleradapter.view
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(context,name.getText().toString(),Toast.LENGTH_SHORT).show();
+                //    Toast.makeText(t,name.getText().toString(),Toast.LENGTH_SHORT).show();
                 }
             });
         }

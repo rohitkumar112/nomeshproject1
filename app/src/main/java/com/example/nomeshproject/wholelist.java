@@ -28,6 +28,7 @@ public class wholelist extends AppCompatActivity {
     Button submit;
     SearchView searchicon;
     ImageView addclient;
+    final List<debitcreditmodel> wholelist=new ArrayList<debitcreditmodel>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,42 +50,27 @@ addclientdialog addclientd=new addclientdialog(wholelist.this);
 addclientd.show();
             }
         });
-        final List<debitcreditmodel> wholelist=new ArrayList<debitcreditmodel>();
         ///apii connection
-        AndroidNetworking.get("http://192.168.137.1:8044/api/department")
+        AndroidNetworking.get("http://192.168.1.125:8090/api/getvaluefromdb")
                 .addQueryParameter("syncDateTime",null)
                 .setTag("test")
                 .setPriority(Priority.LOW)
                 .build()
                 .getAsObject(Clientdebitlist.class, new ParsedRequestListener<Clientdebitlist>() {
-
-
                     @Override
                     public void onResponse(Clientdebitlist response) {
-
-                        int k=0;
                         if(response!=null)
                         {
-
                             for(int i=0;i<response.getGetdata().size();i++)
                             {
-
                                 debitcreditmodel u=new debitcreditmodel(response.getGetdata().get(i).getName(),response.getGetdata().get(i).getDebit(),response.getGetdata().get(i).getCredit());
                                 wholelist.add(u);
-//                        db.insert()
-//
-//                        if(response.getMessage().equals("nonsuccessfull"))
-//                        {
-//                            Toast.makeText(getdata.this,"no not working",LENGTH_SHORT).show();
-//                        }
-//                        else
-//                        {
-//                            Toast.makeText(getdata.this,"working",LENGTH_SHORT).show();
-//                        }
-
+                                if(wholelist.size()>0)
+                                {
+                                    Toast.makeText(wholelist.this,"data inserted", LENGTH_SHORT).show();
+                                }
                             }
-                            Toast.makeText(wholelist.this,"data inserted", LENGTH_SHORT).show();
-                        }
+                       }
                     }
                     @Override
                     public void onError(ANError anError) {
@@ -92,10 +78,6 @@ addclientd.show();
                         System.out.println(anError.getMessage());
                     }
                 });
-
-
-
-
 
 
 
@@ -120,9 +102,9 @@ addclientd.show();
 //        final int creditint=Integer.parseInt(creditt);
 //        creditlist.add(creditint);
 //        debitlist.add(debitint);
-        final recyceleradapter rr=new recyceleradapter(name,getApplicationContext());
-        rr.filldata();
-        recyclerview.setAdapter(rr);
+//        final recyceleradapter rr=new recyceleradapter(name,getApplicationContext());
+//        rr.filldata();
+//        recyclerview.setAdapter(rr);
 //    }
 //     //   searchicon.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 //            @Override
@@ -136,21 +118,21 @@ addclientd.show();
 //                             return false;
 //            }
 //        });
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                int sum= rr.gettotalcount();
-                if(sum>0)
-                {
-                    Toast.makeText(wholelist.this,"done",Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    Toast.makeText(wholelist.this,"not done",Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+//        submit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                int sum= rr.gettotalcount();
+//                if(sum>0)
+//                {
+//                    Toast.makeText(wholelist.this,"done",Toast.LENGTH_SHORT).show();
+//                }
+//                else
+//                {
+//                    Toast.makeText(wholelist.this,"not done",Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
 
     }
 }
