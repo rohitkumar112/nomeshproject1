@@ -24,7 +24,7 @@ public class clientlistadapter extends RecyclerView.Adapter<clientlistadapter.vi
     public viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater layoutInflater=LayoutInflater.from(parent.getContext());
-        View view=layoutInflater.inflate(R.layout.recycler,parent,false);
+        View view=layoutInflater.inflate(R.layout.clientdata,parent,false);
 
         return new clientlistadapter.viewholder(view);
 
@@ -40,6 +40,8 @@ Context context;
     @Override
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
         holder.name.setText(wholelist.get(position).getName());
+    holder.credit.setText(String.valueOf(wholelist.get(position).getCredit()));
+        holder.credit.setText(String.valueOf(wholelist.get(position).getDebit()));
     }
 
     @Override
@@ -49,15 +51,15 @@ Context context;
 
     public class viewholder extends RecyclerView.ViewHolder {
         TextView name;
-        EditText credit,debit;
+        TextView credit,debit;
         Button add;
 
         public viewholder(@NonNull View itemView) {
 
         super(itemView);
             name=(TextView)itemView.findViewById(R.id.name);
-            debit=(EditText)itemView.findViewById(R.id.debit);
-            credit=(EditText)itemView.findViewById(R.id.credit);
+            debit=(TextView) itemView.findViewById(R.id.debit1);
+            credit=(TextView) itemView.findViewById(R.id.credit1);
             add=(Button)itemView.findViewById(R.id.add);
     }
 }

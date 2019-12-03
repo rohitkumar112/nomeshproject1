@@ -51,21 +51,22 @@ public class recyceleradapter extends RecyclerView.Adapter<recyceleradapter.view
     public String[] name;
 
     public Context context;
-
+    List<clientnamemodel> wholelist=new ArrayList<clientnamemodel>();
     public List<debitcreditmodel> debitcreditmodels=new ArrayList<>();
- public List<debitcreditmodel> debitcreditmodelList=new ArrayList<>();
-    public recyceleradapter(String[] name, Context context)
+
+    public recyceleradapter(List<clientnamemodel> wholelist, Context context)
     {
-        this.name=name;
+        this.wholelist=wholelist;
+      //  this.name=name;
         this.context=context;
     }
     public void filldata()
     {
-        for(int i=0;i<name.length;i++)
+        for(int i=0;i<wholelist.size();i++)
         {
             debitcreditmodel db=new debitcreditmodel();
-
-            db.setName(name[i].toString());
+            db.setName(wholelist.get(i).getName().toString());
+//            db.setName(name[i].toString());
             db.setCredit(0);
             db.setDebit(0);
             debitcreditmodels.add(db);
@@ -91,20 +92,25 @@ public class recyceleradapter extends RecyclerView.Adapter<recyceleradapter.view
         }
         return total;
     }
-
+    public List<debitcreditmodel> getlist()
+    {
+        return debitcreditmodels;
+    }
     @Override
     public void onBindViewHolder(@NonNull final viewholder holder, final int position) {
         //     holder.name.setText(String.valueOf(debitlist.get(position)));
-        holder.name.setText(name[position]);
+        holder.name.setText(wholelist.get(position).getName().toString());
         holder.add.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
 //        holder.debit.setText();
-                for(int i=0;i<name.length;i++)
+                for(int i=0;i<wholelist.size();i++)
                 {
-                    if(name[position].equals(debitcreditmodels.get(i).getName()))
+                    if(wholelist.get(position).getName().equals(debitcreditmodels.get(i).getName()))
+//                    if(name[position].equals(debitcreditmodels.get(i).getName()))
                     {
+                        Toast.makeText(context,"Successfully inserted",Toast.LENGTH_SHORT).show();
                         //get value from edittext field
                         String debit=holder.debit.getText().toString();
                         //store value in integer
@@ -131,7 +137,7 @@ public class recyceleradapter extends RecyclerView.Adapter<recyceleradapter.view
 
     @Override
     public int getItemCount() {
-        return name.length;
+        return wholelist.size();
     }
 
     @Override

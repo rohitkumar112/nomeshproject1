@@ -58,8 +58,10 @@ public class MainActivity extends AppCompatActivity {
                                 else
                                 {
                                     Toast.makeText(getApplicationContext(), "Successfull Login", Toast.LENGTH_SHORT).show();
+                                                    Intent intent=new Intent(MainActivity.this,dashboard.class);
+                startActivity(intent);
                                     //storing the username and password
-                                    Toast.makeText(MainActivity.this,"Login Successfully",Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(MainActivity.this,"Login Successfully",Toast.LENGTH_SHORT).show();
                                 }
                             }
 
@@ -71,8 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
                         });
 
-//                Intent intent=new Intent(MainActivity.this,dashboard.class);
-//                startActivity(intent);
+
             }
         });
     }

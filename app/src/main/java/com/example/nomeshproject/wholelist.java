@@ -25,10 +25,12 @@ import static android.widget.Toast.LENGTH_SHORT;
 public class wholelist extends AppCompatActivity {
     RecyclerView recyclerview;
     EditText credit,debit;
+
     Button submit;
     SearchView searchicon;
     ImageView addclient;
-    final List<debitcreditmodel> wholelist=new ArrayList<debitcreditmodel>();
+    recyceleradapter rr;
+    final List<clientnamemodel> wholelist=new ArrayList<clientnamemodel>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class wholelist extends AppCompatActivity {
         debit=(EditText)findViewById(R.id.debit);
         submit=(Button)findViewById(R.id.submit);
         //searchicon=(SearchView)findViewById(R.id.searchicon);
+        recyclerview.setLayoutManager(new LinearLayoutManager(this));
 
         addclient=(ImageView)findViewById(R.id.addclient);
         addclient.setOnClickListener(new View.OnClickListener() {
@@ -50,27 +53,28 @@ addclientdialog addclientd=new addclientdialog(wholelist.this);
 addclientd.show();
             }
         });
+
+
         ///apii connection
-        AndroidNetworking.get("http://192.168.1.125:8090/api/getvaluefromdb")
+        AndroidNetworking.get("http://192.168.1.125:8090/api/clientname")
                 .addQueryParameter("syncDateTime",null)
                 .setTag("test")
                 .setPriority(Priority.LOW)
                 .build()
-                .getAsObject(Clientdebitlist.class, new ParsedRequestListener<Clientdebitlist>() {
+                .getAsObject(clientname.class, new ParsedRequestListener<clientname>() {
                     @Override
-                    public void onResponse(Clientdebitlist response) {
-                        if(response!=null)
-                        {
-                            for(int i=0;i<response.getGetdata().size();i++)
+                    public void onResponse(clientname response) {
+
+                            for(int i=0;i<response.getData().size();i++)
                             {
-                                debitcreditmodel u=new debitcreditmodel(response.getGetdata().get(i).getName(),response.getGetdata().get(i).getDebit(),response.getGetdata().get(i).getCredit());
-                                wholelist.add(u);
-                                if(wholelist.size()>0)
-                                {
-                                    Toast.makeText(wholelist.this,"data inserted", LENGTH_SHORT).show();
-                                }
+                                clientnamemodel c=new clientnamemodel();
+                                c.setName(response.getData().get(i).getName());
+                                wholelist.add(c);
+//
                             }
-                       }
+                        rr=new recyceleradapter(wholelist,getApplicationContext());
+                        recyclerview.setAdapter(rr);
+                        rr.filldata();
                     }
                     @Override
                     public void onError(ANError anError) {
@@ -79,20 +83,7 @@ addclientd.show();
                     }
                 });
 
-
-
-
-
-
-
-
-
-
-
-        recyclerview.setLayoutManager(new LinearLayoutManager(this));
-        final String[] name={"rohit","kumar","sandesh"};
-
-//        submit=(Button)findViewById(R.id.submit);
+        submit=(Button)findViewById(R.id.submit);
 //submit.setOnClickListener(new View.OnClickListener() {
 //    @Override
 //    public void onClick(View view) {
@@ -102,9 +93,9 @@ addclientd.show();
 //        final int creditint=Integer.parseInt(creditt);
 //        creditlist.add(creditint);
 //        debitlist.add(debitint);
-//        final recyceleradapter rr=new recyceleradapter(name,getApplicationContext());
-//        rr.filldata();
-//        recyclerview.setAdapter(rr);
+////        final recyceleradapter rr=new recyceleradapter(name,getApplicationContext());
+////        rr.filldata();
+////        recyclerview.setAdapter(rr);
 //    }
 //     //   searchicon.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 //            @Override
@@ -118,21 +109,27 @@ addclientd.show();
 //                             return false;
 //            }
 //        });
-//        submit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                int sum= rr.gettotalcount();
-//                if(sum>0)
-//                {
-//                    Toast.makeText(wholelist.this,"done",Toast.LENGTH_SHORT).show();
-//                }
-//                else
-//                {
-//                    Toast.makeText(wholelist.this,"not done",Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                int sum= rr.gettotalcount();
+                if(sum>0)
+                {
+                    List<debitcreditmodel> d=new ArrayList<>();
+
+                    d=rr.getlist();
+
+                    //d=rr.getlist();
+                    Toast.makeText(wholelist.this,"done",Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(wholelist.this,"not done",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
     }
 }

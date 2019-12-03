@@ -28,7 +28,7 @@ RecyclerView recyclerview;
 
         recyclerview.setLayoutManager(new LinearLayoutManager(this));
         final List<debitcreditmodel> wholelist=new ArrayList<debitcreditmodel>();
-final List<debitcreditmodel> wcopylist=new ArrayList<debitcreditmodel>();
+        final List<debitcreditmodel> wcopylist=new ArrayList<debitcreditmodel>();
         AndroidNetworking.get("http://192.168.1.125:8090/api/getvaluefromdb")
                 .addQueryParameter("syncDateTime",null)
                 .setTag("test")

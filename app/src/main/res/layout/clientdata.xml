@@ -15,47 +15,27 @@
             android:layout_weight="0.3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
-        <EditText
-            android:hint="0.00"
+        <TextView
             android:textSize="24dp"
             android:textColor="@color/black"
-            android:id="@+id/credit"
-android:inputType="number"
+            android:id="@+id/credit1"
             android:layout_weight="0.3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
 
-        <EditText
-            android:hint="0.00"
+        <TextView
             android:textSize="24dp"
             android:textColor="@color/black"
-            android:id="@+id/debit"
-            android:inputType="number"
+            android:id="@+id/debit1"
             android:layout_weight="0.3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
-
+        <Button
+            android:visibility="gone"
+            android:id="@+id/add"
+            android:text="Add"
+            android:background="@color/lightGray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
-    <EditText
-        android:id="@+id/comments"
-        android:hint="Enter comments"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <Button
-        android:id="@+id/add"
-        android:layout_width="120dp"
-        android:layout_height="45dp"
-
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="15dp"
-        android:elevation="0dp"
-        android:gravity="center"
-        android:paddingTop="3dp"
-        android:paddingBottom="2dp"
-        android:text="Add"
-        android:textAlignment="center"
-        android:textColor="@color/white" />
 </LinearLayout>
