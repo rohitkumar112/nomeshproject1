@@ -19,18 +19,20 @@ import static android.widget.Toast.LENGTH_SHORT;
 
 public class clientlist extends AppCompatActivity {
 RecyclerView recyclerview;
-    final List<debitcreditmodel> wholelist=new ArrayList<debitcreditmodel>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clientlist);
         recyclerview=(RecyclerView)findViewById(R.id.recyclerview);
+
         recyclerview.setLayoutManager(new LinearLayoutManager(this));
+        final List<debitcreditmodel> wholelist=new ArrayList<debitcreditmodel>();
+final List<debitcreditmodel> wcopylist=new ArrayList<debitcreditmodel>();
         AndroidNetworking.get("http://192.168.1.125:8090/api/getvaluefromdb")
                 .addQueryParameter("syncDateTime",null)
                 .setTag("test")
-                .setPriority(Priority.MEDIUM)
+                .setPriority(Priority.LOW)
                 .build()
                 .getAsObject(Clientdebitlist.class, new ParsedRequestListener<Clientdebitlist>() {
 
@@ -38,8 +40,14 @@ RecyclerView recyclerview;
                     public void onResponse(Clientdebitlist response) {
                         for(int i=0;i<response.getGetdata().size();i++)
                         {
+                            Toast.makeText(getApplicationContext(),response.getGetdata().get(0).getName(), LENGTH_SHORT).show();
+                            debitcreditmodel d=new debitcreditmodel(response.getGetdata().get(i).getName(),response.getGetdata().get(i).getDebit(),response.getGetdata().get(i).getCredit());
+                            wholelist.add(d);
+//                            wcopylist.addAll(wholelist);
                         }
-                        //Toast.makeText(getApplicationContext(),response.getGetdata().get(0).getName(), LENGTH_SHORT).show();
+                        recyclerview.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+       recyclerview.setAdapter(new clientlistadapter(wholelist,getApplicationContext()));
+
                     }
 
                     @Override
@@ -47,9 +55,7 @@ RecyclerView recyclerview;
 
                     }
                 });
-        recyclerview.setLayoutManager(new LinearLayoutManager(this));
-wholelist.size();
-        recyclerview.setAdapter(new clientlistadapter(wholelist,this));
+
 
     }
 }
