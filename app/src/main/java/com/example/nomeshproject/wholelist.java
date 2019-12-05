@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +16,10 @@ import android.widget.Toast;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.androidnetworking.interfaces.ParsedRequestListener;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -121,6 +125,36 @@ addclientd.show();
 
                     d=rr.getlist();
 
+                    AndroidNetworking.post("http://192.168.1.125:8090/api/creditdebitcomments")
+                            .addBodyParameter(d)
+                            .addQueryParameter("syncDateTime",null)
+                            .setTag("test")
+                            .setPriority(Priority.LOW)
+                            .build()
+                            .getAsObject(verifylogin.class, new ParsedRequestListener<verifylogin>() {
+                                @Override
+                                public void onResponse(verifylogin response) {
+                                    if(response.getMessage().equals("unsuccessfull"))
+                                    {
+                                        Toast.makeText(wholelist.this,"no not working",LENGTH_SHORT).show();
+                                    }
+                                    else
+                                    {
+                                        Toast.makeText(getApplicationContext(), "Successfull Inserted", Toast.LENGTH_SHORT).show();
+//                                        Intent intent=new Intent(wholelist.this,dashboard.class);
+//                                        startActivity(intent);
+                                        //storing the username and password
+                                        //Toast.makeText(MainActivity.this,"Login Successfully",Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                                @Override
+                                public void onError(ANError anError) {
+
+                                }
+
+
+                            });
                     //d=rr.getlist();
                     Toast.makeText(wholelist.this,"done",Toast.LENGTH_SHORT).show();
                 }
