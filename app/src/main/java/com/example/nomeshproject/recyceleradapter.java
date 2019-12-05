@@ -32,6 +32,8 @@ import java.util.List;
 
 import java.util.ArrayList;
 import java.util.List;
+
+
 public class recyceleradapter extends RecyclerView.Adapter<recyceleradapter.viewholder> implements Filterable {
     public recyceleradapter() {
 
@@ -51,7 +53,7 @@ public class recyceleradapter extends RecyclerView.Adapter<recyceleradapter.view
     public Context context;
 
     public List<debitcreditmodel> debitcreditmodels=new ArrayList<>();
-    private List<debitcreditmodel> debitcreditmodelslist=new ArrayList<>();
+ public List<debitcreditmodel> debitcreditmodelList=new ArrayList<>();
     public recyceleradapter(String[] name, Context context)
     {
         this.name=name;
@@ -67,9 +69,7 @@ public class recyceleradapter extends RecyclerView.Adapter<recyceleradapter.view
             db.setCredit(0);
             db.setDebit(0);
             debitcreditmodels.add(db);
-            debitcreditmodelslist.add(db);
         }
-
     }
     //for checking whether this is equal or not.
     public int gettotalcount()
@@ -136,27 +136,19 @@ public class recyceleradapter extends RecyclerView.Adapter<recyceleradapter.view
 
     @Override
     public Filter getFilter() {
-        return (Filter) examplefilter;
-    }
-private Filter examplefilter=new Filter() {
-    @Override
-    protected FilterResults performFiltering(CharSequence charSequence) {
-     List<debitcreditmodel> examplefilterlist=new ArrayList<>();
-    if(charSequence==null||charSequence.length()==0)
-    {
-    }
-    else
-    {
-
-    }
         return null;
     }
+    private Filter namefilter=new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            return null;
+        }
 
-    @Override
-    protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
 
-    }
-};
+        }
+    };
 
     public class viewholder extends RecyclerView.ViewHolder {
         TextView name;
