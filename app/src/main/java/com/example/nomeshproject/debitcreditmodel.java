@@ -1,11 +1,18 @@
 package com.example.nomeshproject;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 class debitcreditmodel {
-    public debitcreditmodel()
-    {
 
-    }
-    public String name;
+        @SerializedName("debit")
+        @Expose
+        private int debit;
+        @SerializedName("credit")
+        @Expose
+        private int credit;
+        @SerializedName("name")
+        @Expose
+        private String name;
 
     public String getDate() {
         return date;
@@ -24,29 +31,32 @@ class debitcreditmodel {
     this.date=date;
     }
 
-    public String getName() {
-        return name;
-    }
+    public debitcreditmodel() {
 
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getDebit() {
-        return debit;
-    }
+            return debit;
+        }
 
-    public void setDebit(int debit) {
-        this.debit = debit;
-    }
+        public void setDebit(int debit) {
+            this.debit = debit;
+        }
 
-    public int getCredit() {
-        return credit;
-    }
+        public int getCredit() {
+            return credit;
+        }
 
-    public void setCredit(int credit) {
-        this.credit = credit;
-    }
+        public void setCredit(int credit) {
+            this.credit = credit;
+        }
 
-    public int debit,credit;
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
 }

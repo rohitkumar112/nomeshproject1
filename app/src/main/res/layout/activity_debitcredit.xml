@@ -9,6 +9,12 @@
 android:padding="10dp"
     android:layout_height="match_parent"
     >
+    <ImageView
+        android:id="@+id/calender"
+        android:layout_width="20dp"
+        android:layout_gravity="center"
+        android:src="@drawable/amma_copy_3"
+        android:layout_height="20dp"/>
     <LinearLayout
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
