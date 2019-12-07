@@ -5,8 +5,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
@@ -19,22 +17,16 @@ import java.util.List;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
-public class debitcredit extends AppCompatActivity {
-EditText debit,credit,summary;
-Button submit;
-RecyclerView debitcreditlist;
+public class clientlist extends AppCompatActivity {
+RecyclerView recyclerview;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_debitcredit);
-        debitcreditlist=(RecyclerView)findViewById(R.id.debitcreditlist);
-        //from here we can get list from db
-        debitcreditlist.setLayoutManager(new LinearLayoutManager(this));
-   //     final String[] name={"rohit","kumar","sandesh"};
-        List<debitcreditmodel> debitcreditmodelList=new ArrayList<debitcreditmodel>();
-        debitcreditlist=(RecyclerView)findViewById(R.id.debitcreditlist);
+        setContentView(R.layout.activity_clientlist);
+        recyclerview=(RecyclerView)findViewById(R.id.recyclerview);
 
-        debitcreditlist.setLayoutManager(new LinearLayoutManager(this));
+        recyclerview.setLayoutManager(new LinearLayoutManager(this));
         final List<debitcreditmodel> wholelist=new ArrayList<debitcreditmodel>();
         final List<debitcreditmodel> wcopylist=new ArrayList<debitcreditmodel>();
         AndroidNetworking.get("http://192.168.1.125:8090/api/getvaluefromdb")
@@ -49,13 +41,12 @@ RecyclerView debitcreditlist;
                         for(int i=0;i<response.getGetdata().size();i++)
                         {
                             Toast.makeText(getApplicationContext(),response.getGetdata().get(0).getName(), LENGTH_SHORT).show();
-                         //   debitcreditmodel d=new debitcreditmodel(response.getGetdata().get(i).getName(),response.getGetdata().get(i).getDebit(),response.getGetdata().get(i).getCredit());
-                           // wholelist.add(d);
+                      //      debitcreditmodel d=new debitcreditmodel(response.getGetdata().get(i).getName(),response.getGetdata().get(i).getDebit(),response.getGetdata().get(i).getCredit());
+                        //    wholelist.add(d);
 //                            wcopylist.addAll(wholelist);
                         }
-                        debitcreditlist.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                        debitcreditlist.setAdapter(new clientlistadapter(wholelist,getApplicationContext()));
-
+                        recyclerview.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+       recyclerview.setAdapter(new clientlistadapter(wholelist,getApplicationContext()));
                     }
 
                     @Override
@@ -63,6 +54,7 @@ RecyclerView debitcreditlist;
 
                     }
                 });
+
 
     }
 }

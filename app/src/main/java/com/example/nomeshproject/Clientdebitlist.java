@@ -6,32 +6,29 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 class Clientdebitlist {
-    @SerializedName("get")
+    @SerializedName("getdata")
     @Expose
-    private List<Get> get = null;
+    private List<Getdatum> getdata = null;
 
-    public List<Get> getGet() {
-        return get;
+    public List<Getdatum> getGetdata() {
+        return getdata;
     }
 
-    public void setGet(List<Get> get) {
-        this.get = get;
+    public void setGetdata(List<Getdatum> getdata) {
+        this.getdata = getdata;
     }
 
-    public class Get {
+    public class Getdatum {
 
         @SerializedName("name")
         @Expose
         private String name;
         @SerializedName("debit")
         @Expose
-        private Integer debit;
+        private int debit;
         @SerializedName("credit")
         @Expose
-        private Integer credit;
-        @SerializedName("date")
-        @Expose
-        private String date;
+        private int credit;
 
         public String getName() {
             return name;
@@ -41,28 +38,20 @@ class Clientdebitlist {
             this.name = name;
         }
 
-        public Integer getDebit() {
+        public int getDebit() {
             return debit;
         }
 
-        public void setDebit(Integer debit) {
+        public void setDebit(int debit) {
             this.debit = debit;
         }
 
-        public Integer getCredit() {
+        public int getCredit() {
             return credit;
         }
 
-        public void setCredit(Integer credit) {
+        public void setCredit(int credit) {
             this.credit = credit;
-        }
-
-        public String getDate() {
-            return date;
-        }
-
-        public void setDate(String date) {
-            this.date = date;
         }
     }
 }

@@ -39,27 +39,29 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String sname=name.getText().toString();
                 String spass=pass.getText().toString();
-                AndroidNetworking.get("http://localhost:59993/api/login")
+                AndroidNetworking.get("http://192.168.1.125:8090/api/login")
                         .addQueryParameter("name",sname)
                         .addQueryParameter("pass",spass)
                         .addQueryParameter("syncDateTime",null)
                         .setTag("test")
                         .setPriority(
 
-                                Priority.LOW)
+                                Priority.MEDIUM)
                         .build()
                         .getAsObject(verifylogin.class, new ParsedRequestListener<verifylogin>() {
                             @Override
                             public void onResponse(verifylogin response) {
-                                if(response.getMessage().equals("nonsuccessfull"))
+                                if(response.getMessage().equals("unsuccessfull"))
                                 {
                                     Toast.makeText(MainActivity.this,"no not working",LENGTH_SHORT).show();
                                 }
                                 else
                                 {
                                     Toast.makeText(getApplicationContext(), "Successfull Login", Toast.LENGTH_SHORT).show();
+                                                    Intent intent=new Intent(MainActivity.this,dashboard.class);
+                startActivity(intent);
                                     //storing the username and password
-                                    Toast.makeText(MainActivity.this,"Login Successfully",Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(MainActivity.this,"Login Successfully",Toast.LENGTH_SHORT).show();
                                 }
                             }
 
@@ -71,8 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
                         });
 
-                Intent intent=new Intent(MainActivity.this,dashboard.class);
-                startActivity(intent);
+
             }
         });
     }

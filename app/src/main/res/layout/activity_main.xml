@@ -66,7 +66,7 @@
 
                 android:backgroundTint="@color/white"
                 android:gravity="start"
-                android:inputType="phone"
+
                 android:paddingLeft="5dp"
                 android:paddingTop="5dp"
                 android:paddingRight="5dp"
@@ -108,10 +108,10 @@
 
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
-
+android:inputType="textPassword"
                 android:backgroundTint="@color/white"
                 android:gravity="start"
-                android:inputType="phone"
+
                 android:paddingLeft="5dp"
                 android:paddingTop="5dp"
                 android:paddingRight="5dp"
