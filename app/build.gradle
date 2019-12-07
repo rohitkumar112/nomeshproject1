@@ -24,8 +24,7 @@ dependencies {
     implementation 'com.amitshekhar.android:android-networking:1.0.1'
     //noinspection GradleCompatible
     implementation 'com.android.support:design:22.2.1'
-
-
+    implementation 'com.google.code.gson:gson:2.8.2'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'

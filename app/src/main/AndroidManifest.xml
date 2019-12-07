@@ -11,12 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".wholelist"></activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".test" />
+        <activity android:name=".dashboard" />
         <activity android:name=".addclient" />
         <activity android:name=".clientlist" />
         <activity android:name=".debitcredit" />
-        <activity android:name=".dashboard">
+        <activity android:name=".wholelist">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

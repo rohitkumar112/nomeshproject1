@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,11 +15,17 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.ANRequest;
+import com.androidnetworking.common.ANResponse;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.androidnetworking.interfaces.ParsedRequestListener;
+import com.google.gson.Gson;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -124,27 +131,30 @@ addclientd.show();
                     List<debitcreditmodel> d=new ArrayList<>();
 
                     d=rr.getlist();
-
-                    AndroidNetworking.post("http://192.168.1.125:8090/api/creditdebitcomments")
-                            .addBodyParameter(d)
-                            .addQueryParameter("syncDateTime",null)
-                            .setTag("test")
-                            .setPriority(Priority.LOW)
-                            .build()
-                            .getAsObject(verifylogin.class, new ParsedRequestListener<verifylogin>() {
+//                    JSONObject jsonObject = new JSONObject();
+//                    try {
+//                        jsonObject.put("",d);
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//                    Gson gson = new Gson();
+//                    String json = gson.toJson(d);
+                  AndroidNetworking.post("http://192.168.1.125:8090/api/creditdebitcomments")
+                         .addApplicationJsonBody(d)
+                          .setTag("test")
+                          .setPriority(Priority.MEDIUM)
+                          // .setContentType("application/json")
+                          .build()
+                            .getAsObject(verifyinsertion.class, new ParsedRequestListener<verifyinsertion>() {
                                 @Override
-                                public void onResponse(verifylogin response) {
-                                    if(response.getMessage().equals("unsuccessfull"))
+                                public void onResponse(verifyinsertion response) {
+                                    if(response.getMessage()=="successfull")
                                     {
-                                        Toast.makeText(wholelist.this,"no not working",LENGTH_SHORT).show();
+                                        Toast.makeText(wholelist.this,"succes",Toast.LENGTH_SHORT).show();
                                     }
                                     else
                                     {
-                                        Toast.makeText(getApplicationContext(), "Successfull Inserted", Toast.LENGTH_SHORT).show();
-//                                        Intent intent=new Intent(wholelist.this,dashboard.class);
-//                                        startActivity(intent);
-                                        //storing the username and password
-                                        //Toast.makeText(MainActivity.this,"Login Successfully",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(wholelist.this,"faild",Toast.LENGTH_SHORT).show();
                                     }
                                 }
 
@@ -152,11 +162,62 @@ addclientd.show();
                                 public void onError(ANError anError) {
 
                                 }
-
-
                             });
+
+                /*    ANRequest request = AndroidNetworking.post("http://192.168.1.125:8090/api/creditdebitcomments")
+                            .addApplicationJsonBody(json)// posting java object
+                            .setTag("test")
+                            //.addHeaders("Content-Type","application/json")
+                            .setContentType("application/json")
+                            .setPriority(Priority.MEDIUM)
+                            .build();
+                    ANResponse response = request.executeForString();
+
+
+
+                    if (response != null && response.isSuccess()) {
+
+                        Toast.makeText(wholelist.this, ""+response.getResult(), LENGTH_SHORT).show();
+
+                    } else {
+                        Toast.makeText(wholelist.this, ""+response.getResult(), LENGTH_SHORT).show();
+                    }
+*/
+//                    //String json =newGson().toJson(d);
+//                    AndroidNetworking.post("http://192.168.1.125:8090/api/creditdebitcomments")
+//
+//                            //.addApplicationJsonBody(json)
+//                            //.addQueryParameter("syncDateTime",null)
+//                            .addBodyParameter(json)
+//                            .setTag("test")
+//                            .setPriority(Priority.LOW)
+//                            .build()
+//                            .getAsObject(verifyinsertion.class, new ParsedRequestListener<verifyinsertion>() {
+//                                @Override
+//                                public void onResponse(verifyinsertion response) {
+//                                    if(response.getMessage().equals("unsuccessfull"))
+//                                    {
+//                                        Toast.makeText(wholelist.this,"no not working",LENGTH_SHORT).show();
+//                                    }
+//                                    else
+//                                    {
+//                                        Toast.makeText(getApplicationContext(), "Successfull Inserted", Toast.LENGTH_SHORT).show();
+////                                        Intent intent=new Intent(wholelist.this,dashboard.class);
+////                                        startActivity(intent);
+//                                        //storing the username and password
+//                                        //Toast.makeText(MainActivity.this,"Login Successfully",Toast.LENGTH_SHORT).show();
+//                                    }
+//                                }
+//
+//                                @Override
+//                                public void onError(ANError anError) {
+//
+////                                }
+//
+//
+//                            });
                     //d=rr.getlist();
-                    Toast.makeText(wholelist.this,"done",Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(wholelist.this,"done",Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
