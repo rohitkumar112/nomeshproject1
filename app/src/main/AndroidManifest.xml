@@ -16,8 +16,8 @@
         <activity android:name=".dashboard" />
         <activity android:name=".addclient" />
         <activity android:name=".clientlist" />
-        <activity android:name=".debitcredit" />
-        <activity android:name=".wholelist">
+        <activity android:name=".wholelist" />
+        <activity android:name=".debitcredit">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

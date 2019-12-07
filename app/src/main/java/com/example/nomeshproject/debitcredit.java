@@ -4,9 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
@@ -15,6 +20,7 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.ParsedRequestListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import static android.widget.Toast.LENGTH_SHORT;
@@ -22,12 +28,36 @@ import static android.widget.Toast.LENGTH_SHORT;
 public class debitcredit extends AppCompatActivity {
 EditText debit,credit,summary;
 Button submit;
+    DatePickerDialog picker;
+ImageView calender;
 RecyclerView debitcreditlist;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_debitcredit);
         debitcreditlist=(RecyclerView)findViewById(R.id.debitcreditlist);
+        calender=(ImageView)findViewById(R.id.calender);
+
+        calender.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar cldr = Calendar.getInstance();
+                final int day = cldr.get(Calendar.DAY_OF_MONTH);
+                final int month = cldr.get(Calendar.MONTH);
+                int year = cldr.get(Calendar.YEAR);
+                // date picker dialog
+                picker = new DatePickerDialog(debitcredit.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                              //  eText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+          //                  Toast.makeText(debitcredit.this,day, LENGTH_SHORT).show();
+                            }
+                        }, year, month, day);
+                picker.show();
+            }
+        });
+
         //from here we can get list from db
         debitcreditlist.setLayoutManager(new LinearLayoutManager(this));
    //     final String[] name={"rohit","kumar","sandesh"};
@@ -43,7 +73,6 @@ RecyclerView debitcreditlist;
                 .setPriority(Priority.LOW)
                 .build()
                 .getAsObject(Clientdebitlist.class, new ParsedRequestListener<Clientdebitlist>() {
-
                     @Override
                     public void onResponse(Clientdebitlist response) {
                         for(int i=0;i<response.getGetdata().size();i++)
