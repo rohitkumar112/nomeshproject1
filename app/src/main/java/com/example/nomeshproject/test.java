@@ -36,7 +36,7 @@ public class test extends AppCompatActivity {
         //addqueryparameter means passing the paramter to the api
         //passing object to api throgh add bodyparameter
         //pass list as object to web api using addapplicationjsonbody
-        AndroidNetworking.post("http://192.168.1.125:8090/api/test")
+        AndroidNetworking.post("http://192.168.2.114:8080/api/test")
 //                .addQueryParameter("name")
 //                .addQueryParameter("pass",pass)// posting java object
 //                .addBodyParameter(s)

@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SearchView;
@@ -29,6 +31,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import static android.widget.Toast.LENGTH_SHORT;
@@ -36,17 +39,45 @@ import static android.widget.Toast.LENGTH_SHORT;
 public class wholelist extends AppCompatActivity {
     RecyclerView recyclerview;
     EditText credit,debit;
-
+    DatePickerDialog picker;
     Button submit;
+    String combine="";
     SearchView searchicon;
     ImageView addclient;
+    ImageView calender;
     recyceleradapter rr;
+
     final List<clientnamemodel> wholelist=new ArrayList<clientnamemodel>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wholelist);
+        String value="";
+        calender=(ImageView)findViewById(R.id.calender);
+        calender.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                final Calendar cldr = Calendar.getInstance();
+                final int day = cldr.get(Calendar.DAY_OF_MONTH);
+                final int month = cldr.get(Calendar.MONTH);
+                int year = cldr.get(Calendar.YEAR);
+                // date picker dialog
+                picker = new DatePickerDialog(wholelist.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                //  eText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                //                  Toast.makeText(debitcredit.this,day, LENGTH_SHORT).show();
+                                combine=year+"/"+month+"/"+day;
+                            }
+                        }, year, month, day);
+                picker.show();
+
+
+            }
+        });
         final List<Integer> creditlist=new ArrayList<Integer>();
         final List<Integer> debitlist=new ArrayList<Integer>();
         recyclerview=(RecyclerView)findViewById(R.id.recyclerview);
@@ -67,7 +98,7 @@ addclientd.show();
 
 
         ///apii connection
-        AndroidNetworking.get("http://192.168.1.125:8090/api/clientname")
+        AndroidNetworking.get("http://192.168.2.114:8080/api/clientname")
                 .addQueryParameter("syncDateTime",null)
                 .setTag("test")
                 .setPriority(Priority.LOW)
@@ -129,8 +160,13 @@ addclientd.show();
                 if(sum>0)
                 {
                     List<debitcreditmodel> d=new ArrayList<>();
-
+//debitcreditmodel db=new debitcreditmodel();
                     d=rr.getlist();
+                    for(int i=0;i<d.size();i++)
+                    {
+                       d.get(i).setDate(combine);
+                    //   d.set(debitcreditmodel).setDate(combine);
+                    }
 //                    JSONObject jsonObject = new JSONObject();
 //                    try {
 //                        jsonObject.put("",d);
@@ -139,7 +175,7 @@ addclientd.show();
 //                    }
 //                    Gson gson = new Gson();
 //                    String json = gson.toJson(d);
-                  AndroidNetworking.post("http://192.168.1.125:8090/api/creditdebitcomments")
+                  AndroidNetworking.post("http://192.168.2.114:8080/api/creditdebitcomments")
                          .addApplicationJsonBody(d)
                           .setTag("test")
                           .setPriority(Priority.MEDIUM)
@@ -164,7 +200,7 @@ addclientd.show();
                                 }
                             });
 
-                /*    ANRequest request = AndroidNetworking.post("http://192.168.1.125:8090/api/creditdebitcomments")
+                /*    ANRequest request = AndroidNetworking.post("http://192.168.2.114:8080/api/creditdebitcomments")
                             .addApplicationJsonBody(json)// posting java object
                             .setTag("test")
                             //.addHeaders("Content-Type","application/json")
@@ -184,7 +220,7 @@ addclientd.show();
                     }
 */
 //                    //String json =newGson().toJson(d);
-//                    AndroidNetworking.post("http://192.168.1.125:8090/api/creditdebitcomments")
+//                    AndroidNetworking.post("http://192.168.2.114:8080/api/creditdebitcomments")
 //
 //                            //.addApplicationJsonBody(json)
 //                            //.addQueryParameter("syncDateTime",null)
