@@ -30,6 +30,7 @@ EditText debit,credit,summary;
 Button submit;
     DatePickerDialog picker;
 ImageView calender;
+String combine="";
 RecyclerView debitcreditlist;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,6 @@ RecyclerView debitcreditlist;
         setContentView(R.layout.activity_debitcredit);
         debitcreditlist=(RecyclerView)findViewById(R.id.debitcreditlist);
         calender=(ImageView)findViewById(R.id.calender);
-
         calender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,13 +50,17 @@ RecyclerView debitcreditlist;
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                              //  eText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-          //                  Toast.makeText(debitcredit.this,day, LENGTH_SHORT).show();
+                          //      Toast.makeText(debitcredit.this,dayOfMonth + "/" + (monthOfYear + 1) + "/" + year, LENGTH_SHORT).show();
+                          // Toast.makeText(debitcredit.this,day, LENGTH_SHORT).show();
+                                combine=dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
                             }
                         }, year, month, day);
                 picker.show();
+
+                //combine[0] =String.valueOf(year)+String.valueOf(month)+String.valueOf(day);
             }
         });
+    //    String sedate=combine[0];
 
         //from here we can get list from db
         debitcreditlist.setLayoutManager(new LinearLayoutManager(this));
@@ -77,7 +81,7 @@ RecyclerView debitcreditlist;
                     public void onResponse(Clientdebitlist response) {
                         for(int i=0;i<response.getGetdata().size();i++)
                         {
-                            Toast.makeText(getApplicationContext(),response.getGetdata().get(0).getName(), LENGTH_SHORT).show();
+                    //        Toast.makeText(getApplicationContext(),response.getGetdata().get(0).getName(), LENGTH_SHORT).show();
                             debitcreditmodel d=new debitcreditmodel(response.getGetdata().get(i).getName(),response.getGetdata().get(i).getDebit(),response.getGetdata().get(i).getCredit());
                             wholelist.add(d);
 //                            wcopylist.addAll(wholelist);

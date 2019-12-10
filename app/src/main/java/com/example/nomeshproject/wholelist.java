@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SearchView;
@@ -29,6 +31,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import static android.widget.Toast.LENGTH_SHORT;
@@ -36,7 +39,9 @@ import static android.widget.Toast.LENGTH_SHORT;
 public class wholelist extends AppCompatActivity {
     RecyclerView recyclerview;
     EditText credit,debit;
-
+    DatePickerDialog picker;
+    ImageView calender;
+    String combine="";
     Button submit;
     SearchView searchicon;
     ImageView addclient;
@@ -53,9 +58,31 @@ public class wholelist extends AppCompatActivity {
         credit=(EditText)findViewById(R.id.credit);
         debit=(EditText)findViewById(R.id.debit);
         submit=(Button)findViewById(R.id.submit);
+        calender=(ImageView)findViewById(R.id.calender);
+        calender.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar cldr = Calendar.getInstance();
+                final int day = cldr.get(Calendar.DAY_OF_MONTH);
+                final int month = cldr.get(Calendar.MONTH);
+                int year = cldr.get(Calendar.YEAR);
+                // date picker dialog
+                picker = new DatePickerDialog(wholelist.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                //      Toast.makeText(debitcredit.this,dayOfMonth + "/" + (monthOfYear + 1) + "/" + year, LENGTH_SHORT).show();
+                                // Toast.makeText(debitcredit.this,day, LENGTH_SHORT).show();
+                                combine=dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
+                            }
+                        }, year, month, day);
+                picker.show();
+
+                //combine[0] =String.valueOf(year)+String.valueOf(month)+String.valueOf(day);
+            }
+        });
         //searchicon=(SearchView)findViewById(R.id.searchicon);
         recyclerview.setLayoutManager(new LinearLayoutManager(this));
-
         addclient=(ImageView)findViewById(R.id.addclient);
         addclient.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,6 +158,10 @@ addclientd.show();
                     List<debitcreditmodel> d=new ArrayList<>();
 
                     d=rr.getlist();
+                    for(int i=0;i<d.size();i++)
+                    {
+
+                    }
 //                    JSONObject jsonObject = new JSONObject();
 //                    try {
 //                        jsonObject.put("",d);

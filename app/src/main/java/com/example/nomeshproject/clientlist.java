@@ -35,7 +35,6 @@ RecyclerView recyclerview;
                 .setPriority(Priority.LOW)
                 .build()
                 .getAsObject(Clientdebitlist.class, new ParsedRequestListener<Clientdebitlist>() {
-
                     @Override
                     public void onResponse(Clientdebitlist response) {
                         for(int i=0;i<response.getGetdata().size();i++)
@@ -47,9 +46,7 @@ RecyclerView recyclerview;
                         }
                         recyclerview.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
        recyclerview.setAdapter(new clientlistadapter(wholelist,getApplicationContext()));
-
                     }
-
                     @Override
                     public void onError(ANError anError) {
 
