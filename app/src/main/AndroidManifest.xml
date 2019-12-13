@@ -6,18 +6,21 @@
 
     <application
         android:allowBackup="true"
+        android:allowClearUserData="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".testingservice"></activity>
+        <activity android:name=".debitcredit" />
         <activity android:name=".test" />
         <activity android:name=".dashboard" />
         <activity android:name=".addclient" />
         <activity android:name=".clientlist" />
-        <activity android:name=".wholelist" />
-        <activity android:name=".debitcredit">
+        <activity android:name=".MainActivity" />
+        <activity android:name=".wholelist">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

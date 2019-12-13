@@ -29,7 +29,7 @@ RecyclerView recyclerview;
         recyclerview.setLayoutManager(new LinearLayoutManager(this));
         final List<debitcreditmodel> wholelist=new ArrayList<debitcreditmodel>();
         final List<debitcreditmodel> wcopylist=new ArrayList<debitcreditmodel>();
-        AndroidNetworking.get("http://192.168.1.125:8090/api/getvaluefromdb")
+        AndroidNetworking.get("http://192.168.2.114:8080/api/getvaluefromdb")
                 .addQueryParameter("syncDateTime",null)
                 .setTag("test")
                 .setPriority(Priority.LOW)
@@ -40,8 +40,8 @@ RecyclerView recyclerview;
                         for(int i=0;i<response.getGetdata().size();i++)
                         {
                             Toast.makeText(getApplicationContext(),response.getGetdata().get(0).getName(), LENGTH_SHORT).show();
-                            debitcreditmodel d=new debitcreditmodel(response.getGetdata().get(i).getName(),response.getGetdata().get(i).getDebit(),response.getGetdata().get(i).getCredit());
-                            wholelist.add(d);
+                      //      debitcreditmodel d=new debitcreditmodel(response.getGetdata().get(i).getName(),response.getGetdata().get(i).getDebit(),response.getGetdata().get(i).getCredit());
+                        //    wholelist.add(d);
 //                            wcopylist.addAll(wholelist);
                         }
                         recyclerview.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
